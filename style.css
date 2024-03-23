@@ -4,3 +4,83 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: Bitxmap;
+    src: url(assets/fonts/bitxmap.ttf);
+ }
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Bitxmap;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(32, 55, 55);
+    color: rgb(211, 211, 211);
+    cursor: url(assets/cursor\ \(1\).cur), auto;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 12px;
+    background-image: url(assets/header.jpeg);
+    background-size: auto;
+    width: 40%;
+    height: 20%;
+    border: double 4px rgb(211, 211, 211);
+}
+
+#header--search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#header--search-input-error{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+header img {
+    height: 70%;
+}
+
+header input{
+    background-color: rgb(211, 211, 211);
+    border: none;
+    border-radius: 3px;
+    height: 25px;
+    font-family: Bitxmap;
+    padding: 2px;
+}
+
+header button{
+    background-color: darkslategray;
+    border: solid 2px rgb(211, 211, 211);
+    border-radius: 3px;
+    color: rgb(211, 211, 211);
+    font-family: Bitxmap;
+    height: 25px;
+    padding: 2px;
+    margin: 5px;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 40%;
+    height: 50%;
+    background-color: darkslategray;
+    border: double 5px rgb(211, 211, 211);
+    margin-top: -3px;
+}
