@@ -13,7 +13,7 @@ function searchCharacter(){
                 console.log(foundCharacter);
                 displayCharacter(foundCharacter);
             }else{
-                displayError(foundCharacter);
+                displayError();
             }
         }
     }
@@ -45,7 +45,7 @@ function displayCharacter(character){
     img.alt = character.name;
 }
 
-function displayError(character){
+function displayError(){
     displayReset();
     var errorMessage = document.getElementById('search--error');
     errorMessage.textContent = `The character you searched don't exist`;
