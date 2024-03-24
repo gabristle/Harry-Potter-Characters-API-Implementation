@@ -25,3 +25,10 @@ Para usar o buscador de personagens, siga estas etapas:
 2 - Digite no input de busca o nome e sobrenome do personagem que quer buscar informações.
 3 - Aperte o botão de pesquisar!
 ```
+## 🛠️ Construído Com
+- [Javascript](https://www.javascript.com/) - Tecnologia usada
+- [HTML5](https://developer.mozilla.org/pt-BR/docs/Web/HTML) - Estrutura
+- [CSS3](https://developer.mozilla.org/pt-BR/docs/Web/CSS) - Estilização
+
+## ✒️ Autores
+⌨️​ com ❤️​ por Gabriella Ribeiro de Melo e Costa.
