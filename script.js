@@ -12,8 +12,10 @@ function searchCharacter(){
             if (foundCharacter) {
                 console.log(foundCharacter);
                 displayCharacter(foundCharacter);
+                document.getElementById('desc').classList.remove('disabled');
             }else{
                 displayError();
+                document.getElementById('desc').classList.add('disabled');
             }
         }
     }
@@ -87,3 +89,4 @@ function displayReset(){
     imgCharacter.src = '';
     imgCharacter.alt = '';
 }
+
