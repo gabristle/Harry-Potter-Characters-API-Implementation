@@ -6,7 +6,7 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/gabristle/Harry-Potter-Characters-API-Implementation?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/gabristle/Harry-Potter-Characters-API-Implementation?style=for-the-badge)
 
-<img src="imagem.png" alt="Exemplo imagem">
+<img src="assets/harrypottersite.png" alt="Exemplo imagem">
 
 > Projeto 1 da disciplina Programação Web Fullstack, feito para praticar 'Ajax' e a integração de Back-end com Front-end, no geral.
 > Acesse no github pages em: https://gabristle.github.io/Harry-Potter-Characters-API-Implementation/
