@@ -9,6 +9,7 @@
 <img src="imagem.png" alt="Exemplo imagem">
 
 > Projeto 1 da disciplina Programação Web Fullstack, feito para praticar 'Ajax' e a integração de Back-end com Front-end, no geral.
+> Acesse no github pages em: https://gabristle.github.io/Harry-Potter-Characters-API-Implementation/
 
 ### Ajustes e melhorias
 
