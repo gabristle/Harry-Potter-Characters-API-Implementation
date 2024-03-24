@@ -76,11 +76,40 @@ header button{
 main{
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: space-around;
+    flex-direction: row;
     width: 40%;
     height: 50%;
     background-color: darkslategray;
     border: double 5px rgb(211, 211, 211);
     margin-top: -3px;
+}
+
+#desc{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    height: 100%;
+}
+
+#desc-images{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-direction: column;
+}
+
+main img {
+    border: solid 3px rgb(211, 211, 211);
+}
+
+#desc--img-character{
+    height: 200px;
+}
+
+#desc--img-house{
+    height: 50px;
 }

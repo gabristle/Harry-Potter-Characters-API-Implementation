@@ -1,6 +1,6 @@
 function searchCharacter(){
     var characterName = document.getElementById('search--input').value.trim();
-    var url = 'https://hp-api.onrender.com/api/characters?name=Harry%20Potter';
+    var url = 'https://hp-api.onrender.com/api/characters';
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.onreadystatechange = function () {
@@ -40,15 +40,30 @@ function displayCharacter(character){
     descEye.textContent = character.eyeColour;
     descHair.textContent = character.hairColour;
     
-    var img = document.getElementById('desc--img');
-    img.src = character.image;
-    img.alt = character.name;
+    var imgCharacter = document.getElementById('desc--img-character');
+    imgCharacter.src = character.image;
+    imgCharacter.alt = character.name;
+
+    var imgHouse = document.getElementById('desc--img-house');
+    if(descHouse.textContent == 'Gryffindor'){
+        imgHouse.src = 'assets/gryffindor.webp';
+        imgHouse.alt = 'Gryffindor logo';
+    }else if(descHouse.textContent == 'Slytherin'){
+        imgHouse.src = 'assets/slytherin.webp';
+        imgHouse.alt = 'Slytherin logo';
+    }else if(descHouse.textContent == 'Hufflepuff'){
+        imgHouse.src = 'assets/hufflepuff.webp';
+        imgHouse.alt = 'Hufflepuff logo';
+    }else if(descHouse.textContent == 'Ravenclaw'){
+        imgHouse.src = 'assets/ravenclaw.webp';
+        imgHouse.alt = 'Ravenclaw logo';
+    }
 }
 
 function displayError(){
     displayReset();
     var errorMessage = document.getElementById('search--error');
-    errorMessage.textContent = `The character you searched don't exist`;
+    errorMessage.textContent = `The character you searched doesn't exist`;
 }
 
 function displayReset(){
@@ -60,7 +75,7 @@ function displayReset(){
     var descAncestry = document.getElementById('desc--ancestry');
     var descEye = document.getElementById('desc--eye-colour');
     var descHair = document.getElementById('desc--hair-colour');
-    var img = document.getElementById('desc--img');
+    var imgCharacter = document.getElementById('desc--img-character');
     descName.textContent = '';
     descSpecies.textContent = '';
     descGender.textContent = '';
@@ -69,6 +84,6 @@ function displayReset(){
     descAncestry.textContent = '';
     descEye.textContent = '';
     descHair.textContent = '';
-    img.src = '';
-    img.alt = '';
+    imgCharacter.src = '';
+    imgCharacter.alt = '';
 }
