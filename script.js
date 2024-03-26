@@ -1,6 +1,6 @@
 function searchCharacter(){
     var characterName = document.getElementById('search--input').value.trim();
-    var url = 'https://hp-api.onrender.com/api/characters';
+    var url = 'https://potterhead-api.vercel.app/api/characters';
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.onreadystatechange = function () {
@@ -10,6 +10,8 @@ function searchCharacter(){
                 return character.name.toLowerCase() === characterName.toLowerCase();
             });
             if (foundCharacter) {
+                var errorMessage = document.getElementById('search--error');
+                errorMessage.textContent = '';
                 console.log(foundCharacter);
                 displayCharacter(foundCharacter);
                 document.getElementById('desc').classList.remove('disabled');

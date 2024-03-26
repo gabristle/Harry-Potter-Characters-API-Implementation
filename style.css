@@ -62,6 +62,10 @@ header input{
     padding: 2px;
 }
 
+small{
+    color: red;
+}
+
 header button{
     background-color: darkslategray;
     border: solid 2px rgb(211, 211, 211);
