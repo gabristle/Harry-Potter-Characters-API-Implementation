@@ -99,36 +99,26 @@ h2{
     border: solid 1px white;
 }
 
-#desc{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 80%;
-    height: 100%;
-}
-
-#desc-images{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    flex-direction: column;
-}
-
 main img {
     border: solid 3px rgb(211, 211, 211);
 }
 
-#desc--img-character{
+#desc--container{
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    padding: 5%;
+}
+
+.desc--img-character{
     height: 200px;
 }
 
-#desc--img-house{
+.desc--img-house{
     height: 50px;
 }
 
-#desc.disabled {
+.desc.disabled {
     display: none;
 }
 

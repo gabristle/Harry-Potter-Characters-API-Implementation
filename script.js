@@ -1,94 +1,161 @@
-function searchCharacter(){
+function searchCharacter() {
     var characterName = document.getElementById('search--input').value.trim();
-    var url = 'https://potterhead-api.vercel.app/api/characters';
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onreadystatechange = function () {
-        if(xhr.readyState === 4 && xhr.status === 200){
-            var characters = JSON.parse(xhr.responseText);
-            var foundCharacter = characters.find(function(character) {
-                return character.name.toLowerCase() === characterName.toLowerCase();
-            });
-            if (foundCharacter) {
-                var errorMessage = document.getElementById('search--error');
-                errorMessage.textContent = '';
-                console.log(foundCharacter);
-                displayCharacter(foundCharacter);
-                document.getElementById('desc').classList.remove('disabled');
-            }else{
-                displayError();
-                document.getElementById('desc').classList.add('disabled');
+    if(validateSearch(characterName)){
+        var url = 'https://potterhead-api.vercel.app/api/characters';
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var characters = JSON.parse(xhr.responseText);
+                    var foundCharacters = characters.filter(function (character) {
+                        return character.name.toLowerCase().startsWith(characterName.toLowerCase());
+                    });
+                    if (foundCharacters.length > 0) {
+                        var errorMessage = document.getElementById('search--error');
+                        errorMessage.textContent = '';
+                        console.log(foundCharacters);
+                        displayCharacter(foundCharacters);
+                    }else {
+                        displayError(`There's no characters with this name`);
+                    }
+                } else {
+                    displayError('Error');
+                }
+            }
+        };
+        xhr.send();
+    }
+}
+
+function displayCharacter(characters) {
+    var descContainer = document.getElementById('desc--container');
+    descContainer.innerHTML = '';
+
+    characters.forEach(function (character){
+
+        var characterDiv = document.createElement('div');
+        characterDiv.classList.add('character');
+
+        var descName = document.createElement('h2');
+        descName.textContent = character.name;
+        descName.classList.add('desc--name');
+        
+        var descSpecies = document.createElement('p');
+        descSpecies.textContent = "Species: " + character.species;
+        descSpecies.classList.add('desc--species');
+        
+        var descGender = document.createElement('p');
+        descGender.textContent = "Gender: " + character.gender;
+        descGender.classList.add('desc--gender');
+        
+        var descHouse = document.createElement('p');
+        descHouse.textContent = "House: " + character.house;
+        descHouse.classList.add('desc--house');
+        
+        var descDateOfBirth = document.createElement('p');
+        descDateOfBirth.textContent = "Date of Birth: " + character.dateOfBirth;
+        descDateOfBirth.classList.add('desc--date-of-birth');
+        
+        var descAncestry = document.createElement('p');
+        descAncestry.textContent = "Ancestry: " + character.ancestry;
+        descAncestry.classList.add('desc--ancestry');
+
+        var descEye = document.createElement('p');
+        descEye.textContent = "Eye Colour: " + character.eyeColour;
+        descEye.classList.add('desc--eye-colour');
+
+        var descHair = document.createElement('p');
+        descHair.textContent = "Hair Colour: " + character.hairColour;
+        descHair.classList.add('desc--hair-colour');
+        
+        if(character.image){
+            var imgCharacter = document.createElement('img');
+            imgCharacter.classList.add('desc--img-character');
+            imgCharacter.src = character.image;
+            imgCharacter.alt = character.name;
+        }else{
+
+        }
+
+        if(character.house){
+            var imgHouse = document.createElement('img');
+            imgHouse.classList.add('desc--img-house');
+            imgHouse.alt = 'House logo';
+            if (character.house == 'Gryffindor') {
+                imgHouse.src = 'assets/gryffindor.webp';
+            } else if (character.house == 'Slytherin') {
+                imgHouse.src = 'assets/slytherin.webp';
+            } else if (character.house == 'Hufflepuff') {
+                imgHouse.src = 'assets/hufflepuff.webp';
+            } else if (character.house == 'Ravenclaw') {
+                imgHouse.src = 'assets/ravenclaw.webp';
             }
         }
-    }
-    xhr.send();
+
+        characterDiv.appendChild(descName);
+        characterDiv.appendChild(descSpecies);
+        characterDiv.appendChild(descGender);
+        characterDiv.appendChild(descHouse);
+        characterDiv.appendChild(descDateOfBirth);
+        characterDiv.appendChild(descAncestry);
+        characterDiv.appendChild(descEye);
+        characterDiv.appendChild(descHair);
+        if(imgCharacter){
+            characterDiv.appendChild(imgCharacter);
+        }
+        if(imgHouse){
+            characterDiv.appendChild(imgHouse);
+        }
+
+        descContainer.appendChild(characterDiv);
+    });
 }
 
-function displayCharacter(character){
-    displayReset();
-    var descName = document.getElementById('desc--name');
-    var descSpecies = document.getElementById('desc--species');
-    var descGender = document.getElementById('desc--gender');
-    var descHouse = document.getElementById('desc--house');
-    var descDateOfBirth = document.getElementById('desc--date-of-birth');
-    var descAncestry = document.getElementById('desc--ancestry');
-    var descEye = document.getElementById('desc--eye-colour');
-    var descHair = document.getElementById('desc--hair-colour');
-
-    descName.textContent = character.name;
-    descSpecies.textContent = character.species;
-    descGender.textContent = character.gender;
-    descHouse.textContent = character.house;
-    descDateOfBirth.textContent = character.dateOfBirth;
-    descAncestry.textContent = character.ancestry;
-    descEye.textContent = character.eyeColour;
-    descHair.textContent = character.hairColour;
-    
-    var imgCharacter = document.getElementById('desc--img-character');
-    imgCharacter.src = character.image;
-    imgCharacter.alt = character.name;
-
-    var imgHouse = document.getElementById('desc--img-house');
-    if(descHouse.textContent == 'Gryffindor'){
-        imgHouse.src = 'assets/gryffindor.webp';
-        imgHouse.alt = 'Gryffindor logo';
-    }else if(descHouse.textContent == 'Slytherin'){
-        imgHouse.src = 'assets/slytherin.webp';
-        imgHouse.alt = 'Slytherin logo';
-    }else if(descHouse.textContent == 'Hufflepuff'){
-        imgHouse.src = 'assets/hufflepuff.webp';
-        imgHouse.alt = 'Hufflepuff logo';
-    }else if(descHouse.textContent == 'Ravenclaw'){
-        imgHouse.src = 'assets/ravenclaw.webp';
-        imgHouse.alt = 'Ravenclaw logo';
-    }
-}
-
-function displayError(){
+function displayError(message){
     displayReset();
     var errorMessage = document.getElementById('search--error');
-    errorMessage.textContent = `The character you searched doesn't exist`;
+    errorMessage.textContent = `${message}`;
 }
 
-function displayReset(){
-    var descName = document.getElementById('desc--name');
-    var descSpecies = document.getElementById('desc--species');
-    var descGender = document.getElementById('desc--gender');
-    var descHouse = document.getElementById('desc--house');
-    var descDateOfBirth = document.getElementById('desc--date-of-birth');
-    var descAncestry = document.getElementById('desc--ancestry');
-    var descEye = document.getElementById('desc--eye-colour');
-    var descHair = document.getElementById('desc--hair-colour');
-    var imgCharacter = document.getElementById('desc--img-character');
-    descName.textContent = '';
-    descSpecies.textContent = '';
-    descGender.textContent = '';
-    descHouse.textContent = '';
-    descDateOfBirth.textContent = '';
-    descAncestry.textContent = '';
-    descEye.textContent = '';
-    descHair.textContent = '';
-    imgCharacter.src = '';
-    imgCharacter.alt = '';
+function displayReset() {
+    var descName = document.getElementsByClassName('desc--name')[0];
+    var descSpecies = document.getElementsByClassName('desc--species')[0];
+    var descGender = document.getElementsByClassName('desc--gender')[0];
+    var descHouse = document.getElementsByClassName('desc--house')[0];
+    var descDateOfBirth = document.getElementsByClassName('desc--date-of-birth')[0];
+    var descAncestry = document.getElementsByClassName('desc--ancestry')[0];
+    var descEye = document.getElementsByClassName('desc--eye-colour')[0];
+    var descHair = document.getElementsByClassName('desc--hair-colour')[0];
+    var imgCharacter = document.getElementsByClassName('desc--img-character')[0];
+
+    if (descName) descName.textContent = '';
+    if (descSpecies) descSpecies.textContent = '';
+    if (descGender) descGender.textContent = '';
+    if (descHouse) descHouse.textContent = '';
+    if (descDateOfBirth) descDateOfBirth.textContent = '';
+    if (descAncestry) descAncestry.textContent = '';
+    if (descEye) descEye.textContent = '';
+    if (descHair) descHair.textContent = '';
+    if (imgCharacter) {
+        imgCharacter.src = '';
+        imgCharacter.alt = '';
+    }
 }
 
+function validateSearch(toValidate){
+    if(toValidate.length <= 2){
+        displayError('Write more than 2 characters');
+        displayReset();
+        return false;
+    }else if(toValidate.length === 0){      
+        displayError('The input is empty, write at least 2 characters');
+        displayReset();
+        return false;
+    }else if(toValidate.length > 20){
+        displayError('Write less than 21 characters');
+        displayReset();
+        return false;
+    }
+    return true;
+}
