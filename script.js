@@ -113,48 +113,19 @@ function displayCharacter(characters) {
 }
 
 function displayError(message){
-    displayReset();
     var errorMessage = document.getElementById('search--error');
     errorMessage.textContent = `${message}`;
-}
-
-function displayReset() {
-    var descName = document.getElementsByClassName('desc--name')[0];
-    var descSpecies = document.getElementsByClassName('desc--species')[0];
-    var descGender = document.getElementsByClassName('desc--gender')[0];
-    var descHouse = document.getElementsByClassName('desc--house')[0];
-    var descDateOfBirth = document.getElementsByClassName('desc--date-of-birth')[0];
-    var descAncestry = document.getElementsByClassName('desc--ancestry')[0];
-    var descEye = document.getElementsByClassName('desc--eye-colour')[0];
-    var descHair = document.getElementsByClassName('desc--hair-colour')[0];
-    var imgCharacter = document.getElementsByClassName('desc--img-character')[0];
-
-    if (descName) descName.textContent = '';
-    if (descSpecies) descSpecies.textContent = '';
-    if (descGender) descGender.textContent = '';
-    if (descHouse) descHouse.textContent = '';
-    if (descDateOfBirth) descDateOfBirth.textContent = '';
-    if (descAncestry) descAncestry.textContent = '';
-    if (descEye) descEye.textContent = '';
-    if (descHair) descHair.textContent = '';
-    if (imgCharacter) {
-        imgCharacter.src = '';
-        imgCharacter.alt = '';
-    }
 }
 
 function validateSearch(toValidate){
     if(toValidate.length <= 2){
         displayError('Write more than 2 characters');
-        displayReset();
         return false;
     }else if(toValidate.length === 0){      
         displayError('The input is empty, write at least 2 characters');
-        displayReset();
         return false;
     }else if(toValidate.length > 20){
         displayError('Write less than 21 characters');
-        displayReset();
         return false;
     }
     return true;
